@@ -1,0 +1,6 @@
+{
+  "name": "Vianei Schmitt Advocacia Tributária",
+  "description": "Site profissional de Advocacia Tributária com serviços de planejamento fiscal, contencioso e consultoria estratégica por Vianei Schmitt.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
