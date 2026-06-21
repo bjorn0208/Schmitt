@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import Logo from './Logo';
 
 interface HeaderProps {
   onOpenSchedule: () => void;
@@ -57,30 +56,24 @@ export default function Header({ onOpenSchedule }: HeaderProps) {
       id="main-header"
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
-          ? 'bg-law-dark/90 backdrop-blur-md border-b border-law-gold/10 py-3 shadow-lg'
-          : 'bg-transparent py-5'
+          ? 'bg-law-dark/95 backdrop-blur-md border-b border-law-gold/10 py-3 shadow-lg'
+          : 'bg-law-dark/90 backdrop-blur-md border-b border-law-gold/5 py-3 md:bg-transparent md:border-b-0 md:py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
-          {/* Logo with VS monogram shields */}
+          {/* Text brand only */}
           <button
             onClick={() => handleNavClick('home')}
-            className="flex items-center gap-3 text-left focus:outline-none group cursor-pointer"
+            className="flex flex-col text-left focus:outline-none group cursor-pointer min-w-0"
           >
-            {/* SVG Logo GS shield, matching the gold metallic aesthetic */}
-            <div className="flex-shrink-0 relative w-11 h-11 flex items-center justify-center rounded-lg border border-law-gold/30 bg-law-navy/80 hover:border-law-gold transition-colors duration-300 group-hover:scale-105">
-              <Logo size={32} />
-            </div>
-            <div>
-              <h1 className="font-display font-bold text-lg leading-tight tracking-wider text-white group-hover:text-law-gold-light transition-colors">
-                VIANEI SCHMITT
-              </h1>
-              <p className="font-sans text-[9px] font-medium tracking-[0.2em] text-law-gold uppercase">
-                Advocacia Tributária
-              </p>
-            </div>
+            <h1 className="font-display font-bold text-sm sm:text-base md:text-lg leading-none tracking-wider text-white group-hover:text-law-gold-light transition-colors whitespace-nowrap">
+              VIANEI SCHMITT
+            </h1>
+            <p className="font-sans text-[8px] sm:text-[9px] font-medium tracking-[0.15em] sm:tracking-[0.2em] text-law-gold uppercase whitespace-nowrap mt-1">
+              Advocacia Tributária
+            </p>
           </button>
 
           {/* Desktop Navigation */}

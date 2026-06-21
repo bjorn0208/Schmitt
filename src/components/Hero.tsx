@@ -1,6 +1,6 @@
+import React from 'react';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
 import { motion } from 'motion/react';
-import lawyerHeaderBg from '../assets/images/cabecalho.png';
 
 interface HeroProps {
   onOpenSchedule: () => void;
@@ -15,25 +15,21 @@ export default function Hero({ onOpenSchedule }: HeroProps) {
   return (
     <section
       id="home"
-      style={{ backgroundImage: `url(${lawyerHeaderBg})` }}
-      className="relative min-h-screen pt-28 pb-16 flex items-center overflow-hidden bg-cover bg-center md:bg-[82%_center] lg:bg-center"
+      className="relative min-h-screen pt-28 pb-16 flex items-center overflow-hidden bg-black"
     >
       {/* Absolute Decorative Background Overlays for rich contrast & readability */}
-      <div 
-        style={{ height: '6px', width: '1366px' }}
-        className="absolute inset-0 bg-gradient-to-r from-law-dark via-law-dark/85 to-law-dark/20 md:to-transparent z-0" 
-      />
-      <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-law-dark to-transparent z-0" />
-      <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-law-dark to-transparent z-0" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent z-0" />
+      <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-black to-transparent z-0" />
+      <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black to-transparent z-0" />
       
-      {/* Gentle responsive background dimming layer for mobile only */}
-      <div className="absolute inset-0 bg-law-dark/50 md:hidden z-0" />
+      {/* Subtle spotlight effect for black ambient look */}
+      <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-law-gold/5 blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center min-h-[calc(100vh-180px)]">
           
           {/* Left Column: Main persuasive titles */}
-          <div className="lg:col-span-7 flex flex-col justify-center space-y-6 md:space-y-8 text-left">
+          <div className="lg:col-span-12 max-w-3xl flex flex-col justify-center space-y-6 md:space-y-8 text-left">
             <div>
               {/* Trust Badge */}
               <motion.div
@@ -118,9 +114,6 @@ export default function Hero({ onOpenSchedule }: HeroProps) {
               </button>
             </motion.div>
           </div>
-
-          {/* Spacer Column: Empty space to let the lawyer portrait on the background shine clearly */}
-          <div className="lg:col-span-5 relative hidden lg:block" />
 
         </div>
       </div>

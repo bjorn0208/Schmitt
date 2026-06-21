@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import TargetDemographics from './components/TargetDemographics';
@@ -13,10 +13,19 @@ import ProfileSection from './components/ProfileSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import ScheduleModal from './components/ScheduleModal';
+import IntroSplash from './components/IntroSplash';
 
 export default function App() {
   const [isScheduleOpen, setIsScheduleOpen] = useState(false);
   const [defaultService, setDefaultService] = useState('Planejamento Tributário');
+  const [introCompleted, setIntroCompleted] = useState(false);
+
+  // Auto scroll to top on mount when intro is active to ensure aligned viewing
+  useEffect(() => {
+    if (!introCompleted) {
+      window.scrollTo(0, 0);
+    }
+  }, [introCompleted]);
 
   const handleOpenSchedule = (serviceName?: string) => {
     if (serviceName) {
@@ -33,6 +42,11 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-law-dark text-white select-none selection:bg-law-gold selection:text-law-dark">
+      {/* 0. Immersive Welcome Splash Screen (scroll-locked until completely dismissed) */}
+      {!introCompleted && (
+        <IntroSplash onComplete={() => setIntroCompleted(true)} />
+      )}
+
       {/* 1. Floating Header Navbar */}
       <Header onOpenSchedule={() => handleOpenSchedule()} />
 

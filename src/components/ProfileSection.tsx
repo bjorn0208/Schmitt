@@ -1,8 +1,40 @@
-import { User } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { User, Upload, Image as ImageIcon, Trash2 } from 'lucide-react';
 import { motion } from 'motion/react';
-import lawyerAbout from '../assets/images/lawyer_about_1781823037092.jpg';
 
 export default function ProfileSection() {
+  const [profilePic, setProfilePic] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Load from localStorage on mount
+  useEffect(() => {
+    const savedPic = localStorage.getItem('schnitt_lawyer_profile_pic');
+    if (savedPic) {
+      setProfilePic(savedPic);
+    }
+  }, []);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        setProfilePic(base64String);
+        localStorage.setItem('schnitt_lawyer_profile_pic', base64String);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeImage = () => {
+    setProfilePic(null);
+    localStorage.removeItem('schnitt_lawyer_profile_pic');
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
   return (
     <section id="sobre" className="py-20 bg-law-dark relative overflow-hidden">
       {/* Background Accent Glow */}
@@ -37,7 +69,7 @@ export default function ProfileSection() {
               Quem é Vianei Schmitt
             </h2>
             <p className="font-sans text-slate-300 text-sm sm:text-base leading-relaxed font-light">
-              Fundador do escritório Vianei Schmitt Advocacia Tributária, atuo estrategicamente na área jurídica desde 2010. Graduado em Direito pela UNIC - Universidade de Cuiabá em 2009, consolidei uma sólida reputação profissional na defesa do patrimônio corporativo contra excessivas imposições fiscais e arbitrariedades autuadas.
+              Fundador do escritório Vianei Schmitt Advocacia Tributária, atuo estrategicamente na área jurídica desde 2010. Graduado em Direito pela UNIC - Universidade de Cuiabá em 2009, consolidei uma sólida reputação profissional na defense do patrimônio corporativo contra excessivas imposições fiscais e arbitrariedades autuadas.
             </p>
           </div>
         </motion.div>
@@ -48,7 +80,7 @@ export default function ProfileSection() {
           {/* Column 1: Bio & Credentials */}
           <div className="lg:col-span-8 space-y-6">
             <div className="space-y-4">
-              <span className="text-law-gold text-xs font-mono uppercase tracking-widest block">Sobre o Fundador</span>
+              <span className="text-law-gold text-xs font-mono uppercase tracking-widest block font-semibold">Sobre o Fundador</span>
               <h3 className="font-display font-semibold text-2xl md:text-3xl text-white leading-tight">
                 Advocacia Estratégica, Rigor Técnico e Soluções Sob Medida
               </h3>
@@ -71,24 +103,69 @@ export default function ProfileSection() {
           </div>
 
           {/* Column 2: Professional Image Column */}
-          <div className="lg:col-span-4 relative flex justify-center">
-            <div className="relative w-full max-w-sm">
+          <div className="lg:col-span-4 relative flex flex-col items-center justify-center space-y-4">
+            <div className="relative w-full max-w-[280px] sm:max-w-sm">
               {/* Decorative Frame */}
-              <div className="absolute -inset-2 rounded-xl border border-law-gold/15 pointer-events-none transform -translate-x-2 -translate-y-2" />
+              <div className="absolute -inset-2 rounded-xl border border-law-gold/15 pointer-events-none transform -translate-x-1.5 -translate-y-1.5" />
               
-              <div className="relative rounded-lg overflow-hidden shadow-2xl border border-slate-800 bg-law-navy aspect-[3/4]">
-                <img
-                  src={lawyerAbout}
-                  alt="Dr. Vianei Schmitt - Profile"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover object-top hover:scale-103 transition-transform duration-500"
-                />
-                
-                {/* Elegant gold corner lines overlay */}
-                <div className="absolute top-0 right-0 w-6 h-6 border-t border-r border-law-gold rounded-tr" />
-                <div className="absolute bottom-0 left-0 w-6 h-6 border-b border-l border-law-gold rounded-bl" />
-                <div className="absolute inset-0 bg-gradient-to-t from-law-dark via-transparent to-transparent opacity-40" />
+              <div className="relative rounded-lg overflow-hidden shadow-2xl border border-slate-800 bg-law-navy/50 aspect-[3/4] flex flex-col items-center justify-center p-4">
+                {profilePic ? (
+                  <>
+                    <img
+                      src={profilePic}
+                      alt="Foto do Sócio Titular"
+                      referrerPolicy="no-referrer"
+                      className="absolute inset-0 w-full h-full object-cover object-top hover:scale-103 transition-transform duration-500"
+                    />
+                    {/* Elegant gold corner lines overlay */}
+                    <div className="absolute top-0 right-0 w-6 h-6 border-t border-r border-law-gold rounded-tr pointer-events-none" />
+                    <div className="absolute bottom-0 left-0 w-6 h-6 border-b border-l border-law-gold rounded-bl pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-law-dark via-transparent to-transparent opacity-40 pointer-events-none" />
+                  </>
+                ) : (
+                  <div className="flex flex-col items-center justify-center text-center p-6 space-y-4">
+                    <div className="w-16 h-16 rounded-full bg-law-dark/80 border border-law-gold/25 flex items-center justify-center text-law-gold animate-pulse">
+                      <User size={32} />
+                    </div>
+                    <div className="space-y-1">
+                      <p className="font-display font-semibold text-xs tracking-wider uppercase text-law-gold">Sua Foto Aqui</p>
+                      <p className="font-sans text-[11px] text-slate-400 leading-normal max-w-[200px]">
+                        Nenhuma foto enviada ainda. Clique no botão abaixo para escolher uma imagem.
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
+            </div>
+
+            {/* Interactive Upload Actions */}
+            <div className="flex items-center gap-3 w-full max-w-[280px] sm:max-w-sm justify-center">
+              <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                accept="image/*"
+                className="hidden"
+              />
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                className="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 text-[10px] sm:text-xs font-semibold uppercase tracking-wider bg-law-gold hover:bg-yellow-600 text-law-dark rounded-lg shadow-md transition-all font-sans cursor-pointer active:scale-95"
+              >
+                <Upload size={14} />
+                <span>{profilePic ? 'Alterar Foto' : 'Subir Foto'}</span>
+              </button>
+
+              {profilePic && (
+                <button
+                  type="button"
+                  onClick={removeImage}
+                  className="p-2.5 text-slate-400 hover:text-red-400 bg-slate-800/80 hover:bg-slate-800 rounded-lg border border-slate-700 transition-colors cursor-pointer"
+                  title="Remover Foto"
+                >
+                  <Trash2 size={15} />
+                </button>
+              )}
             </div>
           </div>
 

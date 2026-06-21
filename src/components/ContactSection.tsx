@@ -1,13 +1,12 @@
+import React from 'react';
 import { PhoneCall, Mail, MapPin, ExternalLink, CalendarDays, KeyRound, Globe } from 'lucide-react';
 import { motion } from 'motion/react';
-import ladyJustice from '../assets/images/lady_justice_1781823023869.jpg';
 
 interface ContactSectionProps {
   onOpenSchedule: () => void;
 }
 
 export default function ContactSection({ onOpenSchedule }: ContactSectionProps) {
-  
   const handleMapClick = () => {
     window.open('https://maps.google.com/?q=Av.+Paulista,+Bela+Vista,+São+Paulo+-+SP', '_blank');
   };
@@ -17,7 +16,7 @@ export default function ContactSection({ onOpenSchedule }: ContactSectionProps) 
       {/* Background radial soft light */}
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-law-gold/2 blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 font-sans">
         
         {/* Mockup CONTATO Main Block card */}
         <motion.div
@@ -28,12 +27,12 @@ export default function ContactSection({ onOpenSchedule }: ContactSectionProps) 
           className="relative overflow-hidden rounded-2xl border border-law-gold/15 bg-law-card shadow-2xl min-h-[480px] grid grid-cols-1 lg:grid-cols-12"
         >
           {/* Left / Center Grid Column containing texts and coordinates */}
-          <div className="lg:col-span-7 p-8 md:p-12 text-left flex flex-col justify-between space-y-8 relative z-10 w-full">
+          <div className="lg:col-span-7 p-6 sm:p-8 md:p-12 text-left flex flex-col justify-between space-y-8 relative z-10 w-full">
             
             {/* Header section blocks */}
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-law-navy flex items-center justify-center border border-law-gold/20 shadow-inner">
+                <div className="w-12 h-12 rounded-xl bg-law-navy flex items-center justify-center border border-law-gold/20 shadow-inner flex-shrink-0">
                   <PhoneCall 
                     size={20} 
                     className="text-law-gold text-gradient bg-clip-text text-transparent"
@@ -41,7 +40,7 @@ export default function ContactSection({ onOpenSchedule }: ContactSectionProps) 
                   />
                 </div>
                 <div>
-                  <span className="font-mono text-[10px] text-law-gold uppercase tracking-[0.25em] block leading-none mb-1">
+                  <span className="font-mono text-[10px] text-law-gold uppercase tracking-[0.25em] block leading-none mb-1 font-semibold">
                     Atendimento Imediato
                   </span>
                   <h2 className="font-display font-bold text-2xl md:text-3xl text-white">
@@ -79,43 +78,35 @@ export default function ContactSection({ onOpenSchedule }: ContactSectionProps) 
 
             {/* Bottom Section: Address card with custom security notes */}
             <div className="pt-6 border-t border-slate-800/60 max-w-lg">
-              <div className="flex items-center gap-2 text-xs text-slate-400">
-                <KeyRound size={13} className="text-law-gold" />
+              <div className="flex items-start sm:items-center gap-2 text-xs text-slate-400">
+                <KeyRound size={13} className="text-law-gold flex-shrink-0 mt-0.5 sm:mt-0" />
                 <span>Dados de contato protegidos por sigilo profissional sob estatuto da OAB.</span>
               </div>
             </div>
 
           </div>
 
-          {/* Right Grid Column: Dynamic Coordinates with Lady Justice Ambient Background */}
-          <div className="lg:col-span-5 relative min-h-[300px] mt-8 lg:mt-0 overflow-hidden border-t lg:border-t-0 lg:border-l border-slate-800 flex flex-col justify-center">
+          {/* Right Grid Column: Solid Black Background */}
+          <div className="lg:col-span-5 relative min-h-[350px] lg:min-h-[480px] overflow-hidden border-t lg:border-t-0 lg:border-l border-slate-800 flex flex-col justify-center bg-black">
             
-            {/* Background image & gradient overlay strictly isolated */}
-            <div className="absolute inset-0 z-0">
-              <img
-                src={ladyJustice}
-                alt="Balança da Justiça"
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover object-center filter opacity-45 scale-102"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-law-card via-law-card/92 to-law-card/50" />
-              <div className="absolute inset-0 bg-gradient-to-t from-law-dark/95 via-transparent to-transparent lg:hidden" />
-            </div>
+            {/* Elegant gold particle glow matching the black background luxury look */}
+            <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.02]" />
+            <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-law-gold/10 rounded-full blur-3xl pointer-events-none" />
 
             {/* Foreground Content Info list */}
-            <div className="relative z-10 p-8 md:p-12 space-y-6 md:space-y-8 text-left h-full flex flex-col justify-center">
+            <div className="relative z-10 p-6 sm:p-8 md:p-12 space-y-6 md:space-y-8 text-left h-full flex flex-col justify-center">
               
               {/* Phone item click actions */}
               <a
                 href="tel:6199810707"
                 className="flex items-center gap-4 group cursor-pointer"
               >
-                <div className="w-10 h-10 rounded-lg bg-law-navy/90 flex items-center justify-center text-law-gold border border-law-gold/20 group-hover:border-law-gold transition-colors duration-300">
+                <div className="w-10 h-10 rounded-lg bg-law-navy/90 flex items-center justify-center text-law-gold border border-law-gold/20 group-hover:border-law-gold transition-colors duration-300 flex-shrink-0">
                   <PhoneCall size={16} />
                 </div>
-                <div>
-                  <span className="font-sans text-[10px] text-slate-400 uppercase tracking-widest block mb-0.5">Telefone Comercial</span>
-                  <p className="font-mono text-base md:text-lg text-white group-hover:text-law-gold transition-colors font-medium">
+                <div className="min-w-0">
+                  <span className="font-sans text-[10px] text-slate-400 uppercase tracking-widest block mb-0.5 font-semibold">Telefone Comercial</span>
+                  <p className="font-mono text-sm sm:text-base md:text-lg text-white group-hover:text-law-gold transition-colors font-medium">
                     (61) 9981-0707
                   </p>
                 </div>
@@ -124,16 +115,15 @@ export default function ContactSection({ onOpenSchedule }: ContactSectionProps) 
               {/* Email item */}
               <a
                 href="mailto:schmittcreditotributario@gmail.com"
-                className="flex items-center gap-4 group cursor-pointer"
+                className="flex items-center gap-4 group cursor-pointer w-full min-w-0"
               >
-                <div className="w-10 h-10 rounded-lg bg-law-navy/90 flex items-center justify-center text-law-gold border border-law-gold/20 group-hover:border-law-gold transition-colors duration-300">
+                <div className="w-10 h-10 rounded-lg bg-law-navy/90 flex items-center justify-center text-law-gold border border-law-gold/20 group-hover:border-law-gold transition-colors duration-300 flex-shrink-0">
                   <Mail size={16} />
                 </div>
-                <div>
-                  <span className="font-sans text-[10px] text-slate-400 uppercase tracking-widest block mb-0.5">E-mail Corporativo</span>
+                <div className="min-w-0 flex-1">
+                  <span className="font-sans text-[10px] text-slate-400 uppercase tracking-widest block mb-0.5 font-semibold">E-mail Corporativo</span>
                   <p 
-                    style={{ color: '#ffffff', fontSize: '14px', fontWeight: 'bold', marginRight: '-13px' }}
-                    className="font-sans text-xs md:text-sm text-white group-hover:text-law-gold transition-colors font-medium select-all"
+                    className="font-sans text-xs sm:text-sm text-white group-hover:text-law-gold transition-colors font-medium select-all break-all"
                   >
                     schmittcreditotributario@gmail.com
                   </p>
@@ -145,11 +135,11 @@ export default function ContactSection({ onOpenSchedule }: ContactSectionProps) 
                 onClick={handleMapClick}
                 className="flex items-center gap-4 group text-left focus:outline-none cursor-pointer"
               >
-                <div className="w-10 h-10 rounded-lg bg-law-navy/90 flex items-center justify-center text-law-gold border border-law-gold/20 group-hover:border-law-gold transition-colors duration-300">
+                <div className="w-10 h-10 rounded-lg bg-law-navy/90 flex items-center justify-center text-law-gold border border-law-gold/20 group-hover:border-law-gold transition-colors duration-300 flex-shrink-0">
                   <MapPin size={16} />
                 </div>
                 <div>
-                  <span className="font-sans text-[10px] text-slate-400 uppercase tracking-widest block mb-0.5">Localização Física</span>
+                  <span className="font-sans text-[10px] text-slate-400 uppercase tracking-widest block mb-0.5 font-semibold">Localização Física</span>
                   <div className="flex items-center gap-1.5 font-sans text-xs md:text-sm text-white group-hover:text-law-gold transition-colors font-medium">
                     <span>São Paulo - SP</span>
                     <ExternalLink size={12} className="opacity-40 group-hover:opacity-100 transition-opacity" />
@@ -159,12 +149,12 @@ export default function ContactSection({ onOpenSchedule }: ContactSectionProps) 
 
               {/* Additional Office Hours */}
               <div className="flex items-center gap-4 border-t border-slate-800/80 pt-6">
-                <div className="w-10 h-10 rounded-lg bg-law-navy/30 flex items-center justify-center text-slate-500 border border-slate-800">
+                <div className="w-10 h-10 rounded-lg bg-law-navy/30 flex items-center justify-center text-slate-500 border border-slate-800 flex-shrink-0">
                   <Globe size={16} />
                 </div>
                 <div>
-                  <span className="font-sans text-[10px] text-slate-500 uppercase tracking-widest block mb-0.5">Horário de Funcionamento</span>
-                  <p className="font-sans text-[11px] text-slate-300">
+                  <span className="font-sans text-[10px] text-slate-500 uppercase tracking-widest block mb-0.5 font-semibold">Horário de Funcionamento</span>
+                  <p className="font-sans text-[11px] text-slate-300 leading-normal">
                     Segunda a Sexta, das 09h às 18h (Horário de Brasília)
                   </p>
                 </div>
