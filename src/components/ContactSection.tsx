@@ -107,7 +107,7 @@ export default function ContactSection({ onOpenSchedule }: ContactSectionProps) 
                 <div className="min-w-0">
                   <span className="font-sans text-[10px] text-slate-400 uppercase tracking-widest block mb-0.5 font-semibold">Telefone Comercial</span>
                   <p className="font-mono text-sm sm:text-base md:text-lg text-white group-hover:text-law-gold transition-colors font-medium">
-                    (61) 9981-0707
+                    (61) 99810707
                   </p>
                 </div>
               </a>
