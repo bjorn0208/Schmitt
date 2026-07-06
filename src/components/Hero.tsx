@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
 import { motion } from 'motion/react';
+import headerLogo from '../assets/images/header-logo.png';
 
 interface HeroProps {
   onOpenSchedule: () => void;
@@ -17,6 +18,17 @@ export default function Hero({ onOpenSchedule }: HeroProps) {
       id="home"
       className="relative min-h-screen pt-28 pb-16 flex items-center overflow-hidden bg-black"
     >
+      {/* Background Image Container with gradient overlay */}
+      <div className="absolute right-0 top-0 w-1/3 h-full pointer-events-none z-0 select-none overflow-hidden opacity-30">
+        <img
+          src={headerLogo}
+          alt="GS Monogram Background"
+          referrerPolicy="no-referrer"
+          className="w-full h-full object-contain object-right"
+        />
+        <div className="absolute inset-0 bg-gradient-to-l from-black via-transparent to-transparent z-10" />
+      </div>
+
       {/* Absolute Decorative Background Overlays for rich contrast & readability */}
       <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent z-0" />
       <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-black to-transparent z-0" />

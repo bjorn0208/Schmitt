@@ -39,7 +39,7 @@ export default function ProfileSection() {
               Quem é Vianei Schmitt
             </h2>
             <p className="font-sans text-slate-300 text-sm sm:text-base leading-relaxed font-light">
-              Fundador do escritório Vianei Schmitt Advocacia Tributária, atuo estrategicamente na área jurídica desde 2010. Graduado em Direito pela UNIC - Universidade de Cuiabá em 2009, consolidei uma sólida reputação profissional na defense do patrimônio corporativo contra excessivas imposições fiscais e arbitrariedades autuadas.
+              Fundador do escritorio Gring's & Schmitt, atuo estrategicamente na area jurídica desde 2010. Graduado em Direito pela UNIC - Universidade de Cuiaba em 2009, consolidei uma sólida reputacao profissional na defense do patrimonio corporativo contra excessivas imposições fiscais e arbitrariedades autuadas.
             </p>
           </div>
         </motion.div>
@@ -66,7 +66,7 @@ export default function ProfileSection() {
                   "O verdadeiro planejamento tributário não busca atalhos, busca justiça constitucional."
                 </p>
                 <div className="font-display font-medium text-xs uppercase text-slate-400 tracking-wider mt-2">
-                  — Dr. Vianei Schmitt, OAB/MT
+                  Escritório Gring's & Schmitt.
                 </div>
               </div>
             </div>

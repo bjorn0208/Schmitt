@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import headerLogo from '../assets/images/header-logo.png';
 
 interface HeaderProps {
   onOpenSchedule: () => void;
@@ -63,17 +64,20 @@ export default function Header({ onOpenSchedule }: HeaderProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
-          {/* Text brand only */}
+          {/* Logo brand */}
           <button
             onClick={() => handleNavClick('home')}
-            className="flex flex-col text-left focus:outline-none group cursor-pointer min-w-0"
+            className="flex items-center gap-3 focus:outline-none group cursor-pointer"
           >
-            <h1 className="font-display font-bold text-sm sm:text-base md:text-lg leading-none tracking-wider text-white group-hover:text-law-gold-light transition-colors whitespace-nowrap">
-              VIANEI SCHMITT
-            </h1>
-            <p className="font-sans text-[8px] sm:text-[9px] font-medium tracking-[0.15em] sm:tracking-[0.2em] text-law-gold uppercase whitespace-nowrap mt-1">
-              Advocacia Tributária
-            </p>
+            <img src={headerLogo} alt="Logo" className="h-10 w-auto" />
+            <div className="flex flex-col text-left">
+              <h1 className="font-display font-bold text-sm sm:text-base md:text-lg leading-none tracking-wider text-white group-hover:text-law-gold-light transition-colors whitespace-nowrap">
+                Gring's Schmitt
+              </h1>
+              <p className="font-sans text-[8px] sm:text-[9px] font-medium tracking-[0.15em] sm:tracking-[0.2em] text-law-gold uppercase whitespace-nowrap mt-1">
+                Advocacia Tributária
+              </p>
+            </div>
           </button>
 
           {/* Desktop Navigation */}

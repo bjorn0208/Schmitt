@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Facebook, Instagram, Linkedin, Send, ArrowRight, ShieldCheck, Mail } from 'lucide-react';
-import Logo from './Logo';
+import headerLogo from '../assets/images/header-logo.png';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
@@ -29,8 +29,11 @@ export default function Footer() {
   };
 
   return (
-    <footer id="footer-section" className="bg-law-dark border-t border-slate-800/80 pt-16 pb-8 text-slate-400 font-sans">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer id="footer-section" className="relative bg-black border-t border-slate-800/80 pt-16 pb-8 text-slate-400 font-sans overflow-hidden">
+      {/* Footer background gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/90 to-transparent z-0" />
+      
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-slate-800/80 text-left">
           
           {/* Column 1: Detailed brand logo identity */}
@@ -39,12 +42,10 @@ export default function Footer() {
               onClick={() => handleScrollTo('home')}
               className="flex items-center gap-3 text-left focus:outline-none group cursor-pointer"
             >
-              <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg border border-law-gold/30 bg-law-navy group-hover:scale-105 transition-transform">
-                <Logo size={28} />
-              </div>
+              <img src={headerLogo} alt="Gring's Schmitt Logo" className="h-10 w-auto" />
               <div>
                 <h3 className="font-display font-medium text-base tracking-wider text-white group-hover:text-law-gold transition-colors">
-                  VIANEI SCHMITT
+                  Gring's Schmitt
                 </h3>
                 <p className="text-[8px] tracking-[0.18em] text-law-gold uppercase font-medium">
                   Advocacia Tributária
@@ -95,7 +96,7 @@ export default function Footer() {
                 Home
               </button>
               <button onClick={() => handleScrollTo('sobre')} className="text-left text-xs text-slate-400 hover:text-law-gold transition-colors cursor-pointer">
-                Sobre Dr. Vianei
+                Sobre Gring's Schmitt
               </button>
               <button onClick={() => handleScrollTo('sobre-o-que-e')} className="text-left text-xs text-slate-400 hover:text-law-gold transition-colors cursor-pointer">
                 Pra Quem É
@@ -177,7 +178,7 @@ export default function Footer() {
         {/* Bottom copyright line layout */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
           <div>
-            <p>© {currentYear} Vianei Schmitt Advocacia Tributária. Todos os direitos reservados.</p>
+            <p>© {currentYear} Gring's Schmitt Advocacia Tributária. Todos os direitos reservados.</p>
           </div>
           
           <div className="flex items-center gap-6">

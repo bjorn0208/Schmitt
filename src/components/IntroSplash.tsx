@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, Mouse } from 'lucide-react';
+import headerLogo from '../assets/images/header-logo.png';
 import Logo from './Logo';
 
 interface IntroSplashProps {
@@ -9,6 +10,7 @@ interface IntroSplashProps {
 
 export default function IntroSplash({ onComplete }: IntroSplashProps) {
   const [isDismissing, setIsDismissing] = useState(false);
+  const [videoError, setVideoError] = useState(false);
   const touchStartY = useRef<number | null>(null);
 
   useEffect(() => {
@@ -86,7 +88,7 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
             }
           }}
           onAnimationComplete={handleAnimationComplete}
-          className="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-between py-16 px-6 select-none"
+          className="fixed inset-0 z-[100] bg-[#040a18] flex flex-col items-center justify-between py-16 px-6 select-none"
         >
           {/* Subtle gold elegant radial spotlight overlay */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.08)_0%,rgba(0,0,0,0)_70%)] pointer-events-none" />
@@ -103,48 +105,63 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
             Escritório de Advocacia de Alto Padrão
           </motion.div>
 
-          {/* Central Logo Container */}
-          <div className="flex flex-col items-center justify-center flex-1 max-w-md w-full">
+          {/* Central Logo Container - Beautiful horizontal layout matching the uploaded logo exactly */}
+          <div className="flex flex-col items-center justify-center flex-1 max-w-4xl w-full">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              className="relative mb-8 flex items-center justify-center"
+              className="relative flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 text-center md:text-left w-full px-4"
             >
               {/* Premium backglow pulsing element */}
-              <div className="absolute w-48 h-48 sm:w-64 sm:h-64 rounded-full bg-law-gold/15 blur-[80px] pointer-events-none animate-pulse duration-[4s]" />
+              <div className="absolute w-64 h-64 sm:w-96 sm:h-96 rounded-full bg-law-gold/10 blur-[100px] pointer-events-none animate-pulse duration-[5s] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />
               
-              {/* Elegant floating container */}
+              {/* Left Side: Floating Gold Monogram Shield Logo or Rotating Video */}
               <motion.div 
-                animate={{ y: [0, -12, 0] }}
+                animate={{ y: [0, -8, 0] }}
                 transition={{ 
-                  duration: 4, 
+                  duration: 5, 
                   repeat: Infinity, 
                   ease: "easeInOut" 
                 }}
-                className="relative p-8 rounded-2xl bg-gradient-to-b from-neutral-950/20 to-black/10 border border-slate-900/40 backdrop-blur-xs flex items-center justify-center"
+                className="relative flex-shrink-0 flex items-center justify-center z-10"
               >
-                <Logo size={220} className="filter drop-shadow-[0_16px_32px_rgba(212,175,55,0.22)]" />
+                {/* Left Side: Rotating Video */}
+                <img 
+                  src={headerLogo}
+                  alt="Logo"
+                  className="w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-[160px] md:h-[160px] object-contain filter drop-shadow-[0_12px_24px_rgba(212,175,55,0.25)] rounded-lg"
+                />
               </motion.div>
-            </motion.div>
 
-            {/* Typography brand names with high fidelity custom animations */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-center space-y-3"
-            >
-              <h2 className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl leading-tight tracking-[0.12em] text-white">
-                VIANEI SCHMITT
-              </h2>
-              
-              {/* Gold Divider mark */}
-              <div className="w-16 h-[1.5px] bg-gradient-to-r from-transparent via-law-gold to-transparent mx-auto" />
-              
-              <p className="font-sans text-xs sm:text-sm font-medium tracking-[0.25em] text-law-gold uppercase">
-                Advocacia Tributária
-              </p>
+              {/* Right Side: Elegant brand typography with Grings & Schmitt name and spaced gold subtitle */}
+              <div className="flex flex-col justify-center select-text z-10 space-y-1.5 md:space-y-3">
+                <motion.h2
+                  initial={{ opacity: 0, x: -15 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="font-display font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[0.06em] text-white whitespace-nowrap"
+                >
+                  GRINGS & SCHMITT
+                </motion.h2>
+                
+                {/* Elegant subtle gold divider line (on mobile it centers, on desktop it aligns left) */}
+                <motion.div 
+                  initial={{ width: 0 }}
+                  animate={{ width: '100%' }}
+                  transition={{ duration: 1, delay: 0.5 }}
+                  className="h-[1px] bg-gradient-to-r from-law-gold/40 via-law-gold to-transparent max-w-[280px] md:max-w-none mx-auto md:mx-0"
+                />
+                
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                  className="font-sans text-xs sm:text-sm md:text-base font-semibold tracking-[0.22em] sm:tracking-[0.28em] text-law-gold uppercase whitespace-nowrap"
+                >
+                  CONSULTORIA TRIBUTÁRIA
+                </motion.p>
+              </div>
             </motion.div>
           </div>
 
